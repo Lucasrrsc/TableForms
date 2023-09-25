@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Atividade Avaliativa</title>
+	<script src="script.js" defer></script>
+	<style type="text/css">
+		body {
+			background-image: url(img2.jpg);
+			background-size: 100%
+		}
+
+		h2 {
+			text-align: center;
+		}
+
+		form {
+			padding: 20px;
+			background-color: #e4e0e0;
+			border-radius: 1px;
+			border: 1px solid #adadad;
+		}
+
+		.acoes {
+			text-align: center;
+		}
+
+		.campo label {
+			color: rgba(0, 0, 0, 0.99);
+		}
+
+		.campo input,
+		select {
+			width: 96%;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			margin-right: 5px;
+			border-radius: 3px;
+			border: 1px solid grey;
+			padding-left: 5px;
+		}
+
+		.row {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		.vertical-row {
+			display: flex;
+			flex-wrap: wrap;
+			flex-direction: column;
+		}
+
+		fieldset {
+			border: 1px solid grey;
+			border-radius: 5px;
+			margin-top: 10px;
+		}
+
+		legend {
+			padding: 0.2em 0.5em;
+			border: 1px solid grey;
+			color: rgba(0, 0, 0, 0.99);
+			font-size: 90%;
+			text-align: center;
+		}
+
+		button {
+			padding: 10px;
+			margin-right: 10px;
+			border: 1px solid #8a8a8a;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: #8a8a8a;
+			color: white;
+		}
+
+		.erro {
+			color: red;
+		}
+
+		.tabela-prestadores {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 20px;
+		}
+
+		.tabela-prestadores th,
+		.tabela-prestadores td {
+			padding: 10px;
+			border: 1px solid #adadad;
+			text-align: center;
+		}
+
+		.tabela-prestadores th {
+			background-color: #f9f9f9;
+			color: rgba(0, 0, 0, 0.99);
+			font-weight: bold;
+		}
+
+		.tabela-prestadores tbody tr:nth-child(even) {
+			background-color: #f2f2f2;
+		}
+
+		.tabela-prestadores tbody tr:hover {
+			background-color: #e0e0e0;
+		}
+
+		.exclusao,
+		.edicao {
+			padding: 5px 10px;
+			border: none;
+			cursor: pointer;
+		}
+
+		.exclusao {
+			background-color: #ff3333;
+			/* Cor de fundo vermelha */
+			color: #fff;
+			/* Cor do texto branca */
+		}
+
+		.exclusao:hover {
+			background-color: #cc0000;
+			/* Cor de fundo vermelha mais escura ao passar o mouse */
+		}
+
+		.edicao {
+			background-color: #3377ff;
+			/* Cor de fundo azul */
+			color: #fff;
+			/* Cor do texto branca */
+		}
+
+		.edicao:hover {
+			background-color: #0055cc;
+			/* Cor de fundo azul mais escura ao passar o mouse */
+		}
+	</style>
+</head>
+
+<body>
+	<div class="background">
+		<h2>Formulário de Cadastro de Prestador de Serviços</h2>
+	</div>
+	<form name="formulario" action="">
+		<div class="row">
+			<div class="campo" style="flex-grow: 1">
+				<label for="nome">Nome(*)</label>
+				<input type="text" name="nome" id="nome" placeholder="Digite seu nome." />
+				<span class="erro"></span>
+			</div>
+			<div class="campo" style="flex-grow: 1">
+				<label for="sobrenome">Sobrenome(*)</label>
+				<input type="text" name="sobrenome" id="sobrenome" placeholder="Digite seu sobrenome." />
+				<span class="erro"></span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="vertical-row" style="flex-grow: 9">
+				<div class="campo" style="flex-grow: 1; margin-top: 5px;">
+					<label for="email">E-mail(*)</label>
+					<input type="email" name="email" id="email" placeholder="Digite seu e-mail." />
+					<span class="erro"></span>
+				</div>
+				<div class="campo" style="flex-grow: 2">
+					<label for="website">Website</label>
+					<input type="url" name="website" id="website"
+						placeholder="Digite uma URL válida http(s)://www.website.com.br [Não Obrigatório]." />
+					<span class="erro"></span>
+				</div>
+			</div>
+			<fieldset class="grupo row" style="flex-grow: 1">
+				<legend id="per">Periodo de Disponibilidade(*)</legend>
+				<div class="campo" style="flex-grow: 1">
+					<label for="dataini">Data Inicial</label>
+					<input type="date" name="dataini" id="dataini" />
+					<span class="erro"></span>
+				</div>
+				<div class="campo" style="flex-grow: 1">
+					<label for="datafim">Data Final</label>
+					<input type="date" name="datafim" id="datafim" />
+					<span class="erro"></span>
+				</div>
+			</fieldset>
+		</div>
+		<div class="row">
+			<fieldset class="grupo" style="flex-grow: 1">
+				<legend id="reg">Região de Atuação(*)</legend>
+				<input type="radio" name="regiao" id="sul" value="sul" />
+				<label for="sul">Sul</label>
+				<input type="radio" name="regiao" id="sudeste" value="sudeste" />
+				<label for="sudeste">Sudeste</label>
+				<input type="radio" name="regiao" id="centro" value="centro-oeste" />
+				<label for="centro">Centro-Oeste</label>
+				<input type="radio" name="regiao" id="nordeste" value="nordeste" />
+				<label for="nordeste">Nordeste</label>
+				<input type="radio" name="regiao" id="norte" value="norte" />
+				<label for="norte">Norte</label>
+			</fieldset>
+			<fieldset class="grupo" style="flex-grow: 2">
+				<legend id="legend">Atividades Pretendidas(*)</legend>
+				<input type="checkbox" name="atividade" id="analista" value="analista" />
+				<label for="analista">Analista</label>
+				<input type="checkbox" name="atividade" id="programador" value="programador" />
+				<label for="programador">Programador</label>
+				<input type="checkbox" name="atividade" id="webdesigner" value="webdesigner" />
+				<label for="webdesigner">Web-designer</label>
+				<input type="checkbox" name="atividade" id="dba" value="dba" />
+				<label for="dba">DBA</label>
+				<input type="checkbox" name="atividade" id="administrador" value="administrador-rede" />
+				<label for="administrador">Administrador de rede</label>
+				<span class="erro"></span>
+			</fieldset>
+		</div>
+		<div class="row">
+			<fieldset class="acoes" style="flex-grow: 1">
+				<legend>Açoes</legend>
+				<button type='submit'>Enviar</button>
+				<button type='reset'>Reiniciar</button>
+			</fieldset>
+		</div>
+		<!-- Div para mensagens de erro (inicialmente oculta) 
+        <div id="error-message" style="display: none;"></div>  -->
+	</form>
+	<table id="tabela-prestadores" class="tabela-prestadores" border="1">
+		<thead>
+			<th>Nome</th>
+			<th>Sobrenome</th>
+			<th>Email</th>
+			<th>Website</th>
+			<th>Data inicial</th>
+			<th>Data final</th>
+			<th>Regiao</th>
+			<th>Atividades</th>
+			<th>Ações</th>
+		</thead>
+		<tbody>
+
+		</tbody>
+	</table>
+	<script>
+		montarTabelaPrestadores();
+
+		document.querySelectorAll('input[name="regiao"]').forEach(elemento => {
+			elemento.addEventListener('change', configurarAtividades);
+		});
+
+		document.querySelector('#centro').addEventListener('change', configurarAtividades);
+
+		document.querySelector('form[name="formulario"]').addEventListener('submit', validarFormulario);
+
+		function validarFormulario(event) {
+			event.stopPropagation();
+			event.preventDefault();
+
+			let erro = false;
+			erro = validarNome() || erro;
+			erro = validarSobrenome() || erro;
+			erro = validarEmail() || erro;
+			erro = validarSite() || erro;
+			erro = validarData() || erro;
+			erro = validarAtividade() || erro;
+
+			if (erro) {
+				return false;
+			}
+			window.location.reload();
+			//passo 1 - criar o objeto json
+
+			const prestadorServico = {
+				nome: document.querySelector('#nome').value,
+				sobrenome: document.querySelector('#sobrenome').value,
+				email: document.querySelector('#email').value,
+				site: document.querySelector('#website').value,
+				dataInicial: document.querySelector('#dataini').value,
+				dataFinal: document.querySelector('#datafim').value,
+				regiao: document.querySelector('input[name=regiao]:checked').value,
+				atividadesPretendidas: Array.from(document.querySelectorAll('input[name=atividade]:checked')).map(a => a.value)
+			};
+
+
+
+			//passo 2 - obter o array de prestadores de servico do localstorage
+			const prestadoresDeServico = JSON
+				.parse(localStorage.getItem('prestadoresDeServico')) ?? []
+
+			//passo 3 - adicionar o objeto json ao array
+			prestadoresDeServico.push(prestadorServico);
+
+			//passo 4 - salvar o array no localstorage
+			localStorage
+				.setItem(
+					'prestadoresDeServico',
+					JSON.stringify(prestadoresDeServico)
+				);
+
+			montarTabelaPrestadores();
+
+		}
+
+		function mostrarErro(elemento, mensagem) {
+			elemento.parentElement.querySelector('.erro').textContent = mensagem;
+		}
+
+		function validarNome() {
+			const elemento = document.querySelector('#nome');
+			mostrarErro(elemento, '');
+			if (elemento.value.trim() == '') {
+				mostrarErro(elemento, '');
+				return true;
+			}
+			if (elemento.value.trim().length < 3) {
+				mostrarErro(elemento, '');
+				return true;
+			}
+
+			return false;
+		}
+		function validarSobrenome() {
+			const elemento = document.querySelector('#sobrenome');
+			mostrarErro(elemento, '');
+			if (elemento.value.trim() == '') {
+				mostrarErro(elemento, '');
+				return true;
+			}
+			return false;
+		}
+
+		function validarEmail() {
+			const elemento = document.querySelector('#email');
+			mostrarErro(elemento, '');
+			let valor = elemento.value;
+
+			if (valor.trim() == '') {
+				mostrarErro(elemento, '');
+				return true;
+			}
+
+			let indiceArroba = valor.indexOf('@');
+			let indicePonto = valor.substr(indiceArroba + 1).indexOf('.');
+			if (indiceArroba == -1 || indicePonto == -1) {
+				mostrarErro(elemento, 'Email inválido');
+				return true;
+			}
+			return false;
+		}
+
+		function validarSite() {
+			const elemento = document.querySelector('#website');
+			mostrarErro(elemento, '');
+			let valor = elemento.value;
+
+			if (valor.trim() == '') {
+				return false;
+			}
+
+			const inicioCorreto = valor.toLowerCase().startsWith('http://') || valor.toLowerCase().startsWith('https://');
+			valor = valor.substr(valor.indexOf('/') + 2);
+			const indicePonto = valor.indexOf('.');
+			const tamanhoCorreto = valor.length >= 3;
+
+
+			if (!inicioCorreto || indicePonto == -1 || !tamanhoCorreto) {
+				mostrarErro(elemento, 'URL inválida');
+				return true;
+			}
+			return false;
+		}
+
+		function validarAtividade() {
+			const elemento = document.querySelector('#analista');
+			mostrarErro(elemento, '');
+
+			const totalAtividades = document
+				.querySelectorAll('input[name=atividade]:checked').length;
+
+			if (totalAtividades > 3) {
+				mostrarErro(elemento, 'Muitas atividades');
+				return true;
+			}
+			if (totalAtividades == 0) {
+				mostrarErro(elemento, '');
+				return true;
+			}
+			return false;
+		}
+
+		function validarData() {
+			const elDataInicial = document.querySelector('#dataini');
+			const elDataFinal = document.querySelector('#datafim');
+
+			const dataInicial = new Date(elDataInicial.value);
+			const dataFinal = new Date(elDataFinal.value);
+
+			if (dataFinal <= dataInicial) {
+				dataFinal.parentElement.querySelector('.erro').textContent = 'Não pode ser menor que a data inicial';
+				return true;
+			}
+		}
+
+		function configurarAtividades(evento) {
+			const dba = document.querySelector('#dba');
+			const programador = document.querySelector('#programador');
+			if (evento.target.value == 'centro-oeste') {
+				dba.disabled = true;
+				dba.checked = false;
+				programador.disabled = true;
+				programador.checked = false;
+			} else {
+				dba.disabled = false;
+				programador.disabled = false;
+			}
+
+		}
+
+
+		function montarTabelaPrestadores() {
+			//1a etapa pegar do localstorage e colocar em memória
+			const prestadoresDeServico = JSON
+				.parse(localStorage.getItem('prestadoresDeServico')) ?? []
+
+
+			const tabela = document.querySelector('#tabela-prestadores tbody');
+			tabela.innerHTML = '';
+
+			let conteudo = '';
+
+			prestadoresDeServico.forEach((prestador, indice) => {
+				console.log(indice);
+				conteudo += `
+				<tr>
+					<td>${prestador.nome}</td>	
+					<td>${prestador.sobrenome}</td>
+					<td>${prestador.email}</td>
+					<td>${prestador.site}</td>
+					<td>${prestador.dataInicial}</td>
+					<td>${prestador.dataFinal}</td>
+					<td>${prestador.regiao}</td>
+					<td>${prestador.atividadesPretendidas.join('-')}</td>
+					<td>
+						<button class='exclusao' data-id='${indice}'>Excluir</button>
+						<button class="edicao" data-id="${indice}">Editar</button>
+					</td>
+				</tr>
+		`;
+			});
+			tabela.innerHTML = conteudo;
+		}
+		document.querySelectorAll('.exclusao').forEach(botao => {
+			botao.addEventListener('click', function () {
+				const rowIndex = this.getAttribute('data-id'); // Obtém o índice da linha
+				const prestadoresDeServico = JSON.parse(localStorage.getItem('prestadoresDeServico')) || [];
+
+				if (rowIndex >= 0 && rowIndex < prestadoresDeServico.length) {
+					prestadoresDeServico.splice(rowIndex, 1); // Remove o prestador de serviço da lista
+					localStorage.setItem('prestadoresDeServico', JSON.stringify(prestadoresDeServico)); // Atualiza o local storage
+
+					// Recria a tabela após a exclusão
+					montarTabelaPrestadores();
+
+					// Redefine o formulário para seu estado original
+					document.querySelector('form[name="formulario"]').reset();
+				}
+			});
+		});
+
+		document.querySelectorAll('.edicao').forEach(botao => {
+			botao.addEventListener('click', function () {
+				const rowIndex = this.getAttribute('data-id'); // Obtém o índice da linha
+				const prestadoresDeServico = JSON.parse(localStorage.getItem('prestadoresDeServico')) || [];
+
+				if (rowIndex >= 0 && rowIndex < prestadoresDeServico.length) {
+					const prestador = prestadoresDeServico[rowIndex]; // Obtém o prestador de serviço a ser editado
+
+					// Preenche o formulário com os dados do prestador de serviço
+					document.querySelector('#nome').value = prestador.nome;
+					document.querySelector('#sobrenome').value = prestador.sobrenome;
+					document.querySelector('#email').value = prestador.email;
+					document.querySelector('#website').value = prestador.site;
+					document.querySelector('#dataini').value = prestador.dataInicial;
+					document.querySelector('#datafim').value = prestador.dataFinal;
+
+					// Marca a região correspondente
+					const regiaoRadio = document.querySelector(`input[name="regiao"][value="${prestador.regiao}"]`);
+					if (regiaoRadio) {
+						regiaoRadio.checked = true;
+					}
+
+					// Marca as atividades pretendidas correspondentes
+					const atividadesCheckboxes = document.querySelectorAll('input[name="atividade"]');
+					prestador.atividadesPretendidas.forEach(atividade => {
+						const checkbox = document.querySelector(`input[name="atividade"][value="${atividade}"]`);
+						if (checkbox) {
+							checkbox.checked = true;
+						}
+					});
+
+					// Atualiza o botão de envio do formulário para permitir a edição
+					const submitButton = document.querySelector('button[type="submit"]');
+					submitButton.textContent = 'Salvar Edição';
+					submitButton.removeEventListener('click', validarFormulario);
+
+					// Adiciona a lógica para salvar a edição (atualizar o objeto no array e no localStorage)
+					submitButton.addEventListener('click', function (event) {
+						event.preventDefault();
+
+						// Atualiza o objeto do prestador de serviço com os dados do formulário
+						prestador.nome = document.querySelector('#nome').value;
+						prestador.sobrenome = document.querySelector('#sobrenome').value;
+						prestador.email = document.querySelector('#email').value;
+						prestador.site = document.querySelector('#website').value;
+						prestador.dataInicial = document.querySelector('#dataini').value;
+						prestador.dataFinal = document.querySelector('#datafim').value;
+						prestador.regiao = document.querySelector('input[name=regiao]:checked').value;
+						prestador.atividadesPretendidas = Array.from(document.querySelectorAll('input[name=atividade]:checked')).map(a => a.value);
+
+						// Atualiza o objeto no array de prestadores de serviço
+						prestadoresDeServico[rowIndex] = prestador;
+
+						// Atualiza o array no localStorage
+						localStorage.setItem('prestadoresDeServico', JSON.stringify(prestadoresDeServico));
+
+						// Recria a tabela após a edição
+						montarTabelaPrestadores();
+						window.location.reload();
+						// Redefine o botão de envio para seu estado original
+						submitButton.textContent = 'Enviar';
+						submitButton.removeEventListener('click', salvarEdicao);
+						submitButton.addEventListener('click', validarFormulario);
+
+						// Limpa o formulário
+						document.querySelector('form[name="formulario"]').reset();
+					});
+				}
+			});
+		});
+
+	</script>
+</body>
+
+</html>
